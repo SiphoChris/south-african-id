@@ -25,6 +25,7 @@ if (valid.valid) {
   console.log("segments    :", valid.segments);
 }
 
+
 // Invalid ID
 const bad = parse("1234567890123");
 if (!bad.valid) {
@@ -34,7 +35,7 @@ if (!bad.valid) {
 // ── 2. isValid() ─────────────────────────────────────────────────────────────
 
 console.log("\n── isValid() ───────────────────────────────────");
-console.log(isValid("9001049818080")); // true
+console.log(isValid("")); // true
 console.log(isValid("9001049818081")); // false — bad checksum
 console.log(isValid("not-an-id"));     // false — bad format
 
