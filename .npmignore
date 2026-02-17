@@ -1,0 +1,25 @@
+# source
+src/
+
+# tests
+**/__tests__/
+**/*.test.ts
+**/*.spec.ts
+
+# config files
+tsconfig.json
+tsup.config.ts
+vitest.config.ts
+pnpm-workspace.yaml
+.npmrc
+.eslintrc*
+eslint.config.*
+
+# dev/misc
+coverage/
+*.tgz
+*.tar.gz
+.DS_Store
+.idea/
+.vscode/
+*.log

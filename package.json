@@ -1,0 +1,66 @@
+{
+  "name": "@mzantsi/id",
+  "version": "1.0.0",
+  "description": "Parse, validate, and extract data from South African ID numbers",
+  "keywords": [
+    "south africa",
+    "south african",
+    "id",
+    "id number",
+    "id parser",
+    "id validator",
+    "za",
+    "rsa"
+  ],
+  "author": "Mzantsi",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src",
+    "prepublishOnly": "pnpm run build",
+    "example:esm": "node examples/esm/index.mjs",
+    "example:cjs": "node examples/cjs/index.cjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@vitest/coverage-v8": "^2.0.0",
+    "eslint": "^9.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SiphoChris/south-african-id.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SiphoChris/south-african-id/issues"
+  },
+  "homepage": "https://github.com/SiphoChris/south-african-id#readme",
+  "engines": {
+    "node": ">=18"
+  }
+}
