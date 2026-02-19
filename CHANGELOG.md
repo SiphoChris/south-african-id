@@ -1,13 +1,14 @@
 # Changelog
 
-All notable changes to `@mzantsi/id` will be documented here.
+All notable changes to `south-african-id` will be documented here.
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.0.0] - 2024-01-01
 
 ### Added
-- Initial release — full rewrite of `@mzantsi/id-verifier` in TypeScript
+
+- Initial release — full rewrite of `south-african-id-verifier` in TypeScript
 - `parse()` — full ID parsing with discriminated union result
 - `isValid()` — boolean validity check
 - `getDateOfBirth()` — extract birth date as a `Date`

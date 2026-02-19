@@ -1,4 +1,4 @@
-# Contributing to @mzantsi/id
+# Contributing to south-african-id
 
 Thanks for your interest in contributing!
 
@@ -40,6 +40,7 @@ chore: bump vitest to v2.1
 ## Reporting bugs
 
 Open an issue at https://github.com/SiphoChris/south-african-id/issues and include:
+
 - The ID number (or a synthetic one that reproduces the bug)
 - Expected vs actual output
 - Your Node.js and package version

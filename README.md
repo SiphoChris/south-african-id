@@ -1,10 +1,10 @@
-# @mzantsi/id
+# south-african-id
 
 > Parse, validate, and extract data from South African ID numbers — fully typed, zero dependencies.
 
-[![npm version](https://img.shields.io/npm/v/@mzantsi/id)](https://www.npmjs.com/package/@mzantsi/id)
-[![license](https://img.shields.io/npm/l/@mzantsi/id)](./LICENSE)
-[![types](https://img.shields.io/npm/types/@mzantsi/id)](./src/types.ts)
+[![npm version](https://img.shields.io/npm/v/south-african-id)](https://www.npmjs.com/package/south-african-id)
+[![license](https://img.shields.io/npm/l/south-african-id)](./LICENSE)
+[![types](https://img.shields.io/npm/types/south-african-id)](./src/types.ts)
 
 ---
 
@@ -32,7 +32,7 @@
 
 ## Overview
 
-South African ID numbers encode a person's date of birth, gender, and citizenship status in a structured 13-digit format. `@mzantsi/id` gives you a clean, fully-typed API to:
+South African ID numbers encode a person's date of birth, gender, and citizenship status in a structured 13-digit format. `south-african-id` gives you a clean, fully-typed API to:
 
 - **Validate** an ID number (format, date, citizenship digit, Luhn checksum)
 - **Parse** all encoded fields in one call
@@ -57,42 +57,42 @@ Y Y M M D D S S S S C A Z
 
 **Example:** `9001049818080`
 
-| Segment | Value | Meaning |
-|---------|-------|---------|
-| `YY`   | `90`  | Born in 1990 |
-| `MM`   | `01`  | January |
-| `DD`   | `04`  | 4th |
-| `SSSS` | `9818` | ≥ 5000 → Male |
-| `C`    | `0`   | South African citizen |
-| `A`    | `8`   | Legacy (ignore) |
-| `Z`    | `0`   | Luhn checksum ✓ |
+| Segment | Value  | Meaning               |
+| ------- | ------ | --------------------- |
+| `YY`    | `90`   | Born in 1990          |
+| `MM`    | `01`   | January               |
+| `DD`    | `04`   | 4th                   |
+| `SSSS`  | `9818` | ≥ 5000 → Male         |
+| `C`     | `0`    | South African citizen |
+| `A`     | `8`    | Legacy (ignore)       |
+| `Z`     | `0`    | Luhn checksum ✓       |
 
 ---
 
 ## Installation
 
-### pnpm *(recommended)*
+### pnpm _(recommended)_
 
 ```sh
-pnpm add @mzantsi/id
+pnpm add south-african-id
 ```
 
 ### npm
 
 ```sh
-npm install @mzantsi/id
+npm install south-african-id
 ```
 
 ### yarn
 
 ```sh
-yarn add @mzantsi/id
+yarn add south-african-id
 ```
 
 ### bun
 
 ```sh
-bun add @mzantsi/id
+bun add south-african-id
 ```
 
 ---
@@ -100,18 +100,18 @@ bun add @mzantsi/id
 ## Quick Start
 
 ```ts
-import { parse } from "@mzantsi/id";
+import { parse } from "south-african-id";
 
 const result = parse("9001049818080");
 
 if (result.valid) {
   console.log(result.dateOfBirth); // Date: 1990-01-04
-  console.log(result.age);         // e.g. 35
-  console.log(result.gender);      // "male"
+  console.log(result.age); // e.g. 35
+  console.log(result.gender); // "male"
   console.log(result.citizenship); // "citizen"
-  console.log(result.isCitizen);   // true
+  console.log(result.isCitizen); // true
 } else {
-  console.error(result.reason);    // e.g. "INVALID_CHECKSUM"
+  console.error(result.reason); // e.g. "INVALID_CHECKSUM"
 }
 ```
 
@@ -124,40 +124,40 @@ if (result.valid) {
 The main entry point. Runs all four validation checks and returns a discriminated union — either a fully populated `ParsedID` or an `InvalidID` with a reason code.
 
 ```ts
-function parse(idNumber: string): IDResult
+function parse(idNumber: string): IDResult;
 ```
 
 **Parameters**
 
-| Name | Type | Description |
-|------|------|-------------|
+| Name       | Type     | Description                                                                               |
+| ---------- | -------- | ----------------------------------------------------------------------------------------- |
 | `idNumber` | `string` | A 13-digit South African ID number. Leading/trailing whitespace is trimmed automatically. |
 
 **Returns** — `ParsedID` (when `valid: true`) or `InvalidID` (when `valid: false`).
 
 #### `ParsedID` fields
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `valid` | `true` | Discriminant |
-| `idNumber` | `string` | The original input string |
-| `dateOfBirth` | `Date` | Birth date encoded in the ID |
-| `age` | `number` | Age in full years as of today |
-| `gender` | `"male" \| "female"` | Derived from digits 7–10 |
-| `citizenship` | `"citizen" \| "permanent_resident"` | Derived from digit 11 |
-| `isCitizen` | `boolean` | `true` when citizenship digit is `0` |
-| `segments` | `RawSegments` | The raw sliced string segments |
+| Field         | Type                                | Description                          |
+| ------------- | ----------------------------------- | ------------------------------------ |
+| `valid`       | `true`                              | Discriminant                         |
+| `idNumber`    | `string`                            | The original input string            |
+| `dateOfBirth` | `Date`                              | Birth date encoded in the ID         |
+| `age`         | `number`                            | Age in full years as of today        |
+| `gender`      | `"male" \| "female"`                | Derived from digits 7–10             |
+| `citizenship` | `"citizen" \| "permanent_resident"` | Derived from digit 11                |
+| `isCitizen`   | `boolean`                           | `true` when citizenship digit is `0` |
+| `segments`    | `RawSegments`                       | The raw sliced string segments       |
 
 #### `InvalidID` fields
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `valid` | `false` | Discriminant |
-| `idNumber` | `string` | The original input string |
-| `reason` | `InvalidReason` | Why validation failed |
+| Field      | Type            | Description               |
+| ---------- | --------------- | ------------------------- |
+| `valid`    | `false`         | Discriminant              |
+| `idNumber` | `string`        | The original input string |
+| `reason`   | `InvalidReason` | Why validation failed     |
 
 ```ts
-import { parse } from "@mzantsi/id";
+import { parse } from "south-african-id";
 
 // ✅ Valid
 const r1 = parse("9001049818080");
@@ -183,15 +183,15 @@ const r3 = parse("9001049818081");
 Lightweight boolean check. Internally calls `parse()` and returns `result.valid`.
 
 ```ts
-function isValid(idNumber: string): boolean
+function isValid(idNumber: string): boolean;
 ```
 
 ```ts
-import { isValid } from "@mzantsi/id";
+import { isValid } from "south-african-id";
 
 isValid("9001049818080"); // true
 isValid("1234567890123"); // false
-isValid("invalid");       // false
+isValid("invalid"); // false
 ```
 
 ---
@@ -201,11 +201,11 @@ isValid("invalid");       // false
 Returns the birth date encoded in the ID, or `null` if the ID is invalid.
 
 ```ts
-function getDateOfBirth(idNumber: string): Date | null
+function getDateOfBirth(idNumber: string): Date | null;
 ```
 
 ```ts
-import { getDateOfBirth } from "@mzantsi/id";
+import { getDateOfBirth } from "south-african-id";
 
 const dob = getDateOfBirth("9001049818080");
 // dob instanceof Date === true
@@ -223,15 +223,15 @@ getDateOfBirth("invalid"); // null
 Returns `"male"` or `"female"` based on the gender-sequence digits (positions 7–10), or `null` for invalid IDs.
 
 ```ts
-function getGender(idNumber: string): "male" | "female" | null
+function getGender(idNumber: string): "male" | "female" | null;
 ```
 
 ```ts
-import { getGender } from "@mzantsi/id";
+import { getGender } from "south-african-id";
 
 getGender("9001049818080"); // "male"   (sequence 9818 ≥ 5000)
 getGender("7805050050083"); // "female" (sequence 0050 < 5000)
-getGender("invalid");       // null
+getGender("invalid"); // null
 ```
 
 ---
@@ -241,14 +241,14 @@ getGender("invalid");       // null
 Returns the person's age in completed years as of today, or `null` for invalid IDs.
 
 ```ts
-function getAge(idNumber: string): number | null
+function getAge(idNumber: string): number | null;
 ```
 
 ```ts
-import { getAge } from "@mzantsi/id";
+import { getAge } from "south-african-id";
 
 getAge("9001049818080"); // e.g. 35
-getAge("invalid");       // null
+getAge("invalid"); // null
 ```
 
 ---
@@ -258,15 +258,17 @@ getAge("invalid");       // null
 Returns the citizenship status, or `null` for invalid IDs.
 
 ```ts
-function getCitizenship(idNumber: string): "citizen" | "permanent_resident" | null
+function getCitizenship(
+  idNumber: string,
+): "citizen" | "permanent_resident" | null;
 ```
 
 ```ts
-import { getCitizenship } from "@mzantsi/id";
+import { getCitizenship } from "south-african-id";
 
 getCitizenship("9001049818080"); // "citizen"
 getCitizenship("8001015009087"); // "permanent_resident"
-getCitizenship("invalid");       // null
+getCitizenship("invalid"); // null
 ```
 
 ---
@@ -276,11 +278,11 @@ getCitizenship("invalid");       // null
 Low-level Luhn (mod 10) checksum validator. Exposed for advanced use-cases; most consumers should use `parse()` or `isValid()` instead.
 
 ```ts
-function luhn(digits: string): boolean
+function luhn(digits: string): boolean;
 ```
 
 ```ts
-import { luhn } from "@mzantsi/id";
+import { luhn } from "south-african-id";
 
 luhn("9001049818080"); // true
 luhn("9001049818081"); // false
@@ -301,7 +303,7 @@ import type {
   Gender,
   CitizenshipStatus,
   RawSegments,
-} from "@mzantsi/id";
+} from "south-african-id";
 ```
 
 ### `IDResult`
@@ -347,10 +349,10 @@ interface InvalidID {
 
 ```ts
 type InvalidReason =
-  | "INVALID_FORMAT"          // Not exactly 13 numeric digits
-  | "INVALID_DATE"            // Date portion is not a real calendar date
+  | "INVALID_FORMAT" // Not exactly 13 numeric digits
+  | "INVALID_DATE" // Date portion is not a real calendar date
   | "INVALID_CITIZENSHIP_DIGIT" // Citizenship digit is not 0, 1, or 2
-  | "INVALID_CHECKSUM";       // Luhn algorithm fails
+  | "INVALID_CHECKSUM"; // Luhn algorithm fails
 ```
 
 ---
@@ -377,13 +379,13 @@ The raw sliced string segments of the ID number. Available on `ParsedID.segments
 
 ```ts
 interface RawSegments {
-  yearPart: string;        // "90"
-  monthPart: string;       // "01"
-  dayPart: string;         // "04"
-  genderSequence: string;  // "9818"
-  citizenshipDigit: string;// "0"
-  legacyDigit: string;     // "8"
-  checksumDigit: string;   // "0"
+  yearPart: string; // "90"
+  monthPart: string; // "01"
+  dayPart: string; // "04"
+  genderSequence: string; // "9818"
+  citizenshipDigit: string; // "0"
+  legacyDigit: string; // "8"
+  checksumDigit: string; // "0"
 }
 ```
 
@@ -393,12 +395,12 @@ interface RawSegments {
 
 `parse()` applies the following checks **in order**. The first failure short-circuits and returns the corresponding `reason`.
 
-| # | Check | Reason on failure |
-|---|-------|-------------------|
-| 1 | Must be exactly **13 numeric digits** (after trimming) | `INVALID_FORMAT` |
-| 2 | `YYMMDD` must be a **real, non-future** calendar date | `INVALID_DATE` |
-| 3 | Citizenship digit (position 11) must be `0`, `1`, or `2` | `INVALID_CITIZENSHIP_DIGIT` |
-| 4 | Full 13-digit string must satisfy the **Luhn algorithm** | `INVALID_CHECKSUM` |
+| #   | Check                                                    | Reason on failure           |
+| --- | -------------------------------------------------------- | --------------------------- |
+| 1   | Must be exactly **13 numeric digits** (after trimming)   | `INVALID_FORMAT`            |
+| 2   | `YYMMDD` must be a **real, non-future** calendar date    | `INVALID_DATE`              |
+| 3   | Citizenship digit (position 11) must be `0`, `1`, or `2` | `INVALID_CITIZENSHIP_DIGIT` |
+| 4   | Full 13-digit string must satisfy the **Luhn algorithm** | `INVALID_CHECKSUM`          |
 
 ---
 
@@ -407,7 +409,7 @@ interface RawSegments {
 ### Form validation
 
 ```ts
-import { isValid } from "@mzantsi/id";
+import { isValid } from "south-african-id";
 
 function validateForm(idNumber: string) {
   if (!isValid(idNumber)) {
@@ -419,7 +421,7 @@ function validateForm(idNumber: string) {
 ### Detailed error handling
 
 ```ts
-import { parse } from "@mzantsi/id";
+import { parse } from "south-african-id";
 
 function processID(idNumber: string) {
   const result = parse(idNumber);
@@ -444,7 +446,7 @@ function processID(idNumber: string) {
 ### Displaying a person's profile
 
 ```ts
-import { parse } from "@mzantsi/id";
+import { parse } from "south-african-id";
 
 const id = parse("9001049818080");
 
@@ -469,13 +471,9 @@ if (id.valid) {
 ### Filtering a list
 
 ```ts
-import { getGender, getAge } from "@mzantsi/id";
+import { getGender, getAge } from "south-african-id";
 
-const ids = [
-  "9001049818080",
-  "7805050050083",
-  "8001015009087",
-];
+const ids = ["9001049818080", "7805050050083", "8001015009087"];
 
 // Find all IDs belonging to people over 40
 const over40 = ids.filter((id) => {
@@ -487,7 +485,7 @@ const over40 = ids.filter((id) => {
 ### Using raw segments
 
 ```ts
-import { parse } from "@mzantsi/id";
+import { parse } from "south-african-id";
 
 const result = parse("9001049818080");
 
@@ -501,7 +499,7 @@ if (result.valid) {
 ### CommonJS usage
 
 ```js
-const { parse, isValid } = require("@mzantsi/id");
+const { parse, isValid } = require("south-african-id");
 
 const result = parse("9001049818080");
 console.log(result.valid); // true
@@ -520,7 +518,7 @@ console.log(result.valid); // true
 ### Project structure
 
 ```
-@mzantsi/id/
+south-african-id/
 ├── src/
 │   ├── index.ts          # Public barrel — re-exports everything
 │   ├── types.ts          # All TypeScript types and interfaces
@@ -537,15 +535,15 @@ console.log(result.valid); // true
 
 ### Scripts
 
-| Command | Description |
-|---------|-------------|
-| `pnpm build` | Compile to `dist/` (ESM, CJS, types) |
-| `pnpm dev` | Rebuild on file change |
-| `pnpm test` | Run test suite once |
-| `pnpm test:watch` | Run tests in watch mode |
-| `pnpm test:coverage` | Run tests with coverage report |
-| `pnpm typecheck` | Type-check without emitting |
-| `pnpm lint` | Lint source files |
+| Command              | Description                          |
+| -------------------- | ------------------------------------ |
+| `pnpm build`         | Compile to `dist/` (ESM, CJS, types) |
+| `pnpm dev`           | Rebuild on file change               |
+| `pnpm test`          | Run test suite once                  |
+| `pnpm test:watch`    | Run tests in watch mode              |
+| `pnpm test:coverage` | Run tests with coverage report       |
+| `pnpm typecheck`     | Type-check without emitting          |
+| `pnpm lint`          | Lint source files                    |
 
 ---
 

@@ -1,6 +1,6 @@
 # Examples
 
-Two self-contained examples showing how to use `@mzantsi/id` in both module systems.
+Two self-contained examples showing how to use `south-african-id` in both module systems.
 
 ## ESM (`examples/esm/`)
 
