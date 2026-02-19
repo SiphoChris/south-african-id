@@ -1,11 +1,11 @@
-# Contributing to south-african-id
+# Contributing to @south-african/id
 
 Thanks for your interest in contributing!
 
 ## Setup
 
 ```sh
-git clone https://github.com/SiphoChris/south-african-id.git
+git clone https://github.com/SiphoChris/@south-african/id.git
 cd id
 pnpm install
 ```
@@ -39,7 +39,7 @@ chore: bump vitest to v2.1
 
 ## Reporting bugs
 
-Open an issue at https://github.com/SiphoChris/south-african-id/issues and include:
+Open an issue at https://github.com/SiphoChris/@south-african/id/issues and include:
 
 - The ID number (or a synthetic one that reproduces the bug)
 - Expected vs actual output

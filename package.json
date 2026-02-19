@@ -1,5 +1,5 @@
 {
-  "name": "south-african-id",
+  "name": "@south-african/id",
   "version": "1.0.0",
   "description": "Parse, validate, and extract data from South African ID numbers",
   "keywords": [

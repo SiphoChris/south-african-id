@@ -1,10 +1,10 @@
-# south-african-id
+# @south-african/id
 
 > Parse, validate, and extract data from South African ID numbers — fully typed, zero dependencies.
 
-[![npm version](https://img.shields.io/npm/v/south-african-id)](https://www.npmjs.com/package/south-african-id)
-[![license](https://img.shields.io/npm/l/south-african-id)](./LICENSE)
-[![types](https://img.shields.io/npm/types/south-african-id)](./src/types.ts)
+[![npm version](https://img.shields.io/npm/v/@south-african/id)](https://www.npmjs.com/package/@south-african/id)
+[![license](https://img.shields.io/npm/l/@south-african/id)](./LICENSE)
+[![types](https://img.shields.io/npm/types/@south-african/id)](./src/types.ts)
 
 ---
 
@@ -32,7 +32,7 @@
 
 ## Overview
 
-South African ID numbers encode a person's date of birth, gender, and citizenship status in a structured 13-digit format. `south-african-id` gives you a clean, fully-typed API to:
+South African ID numbers encode a person's date of birth, gender, and citizenship status in a structured 13-digit format. `@south-african/id` gives you a clean, fully-typed API to:
 
 - **Validate** an ID number (format, date, citizenship digit, Luhn checksum)
 - **Parse** all encoded fields in one call
@@ -74,25 +74,25 @@ Y Y M M D D S S S S C A Z
 ### pnpm _(recommended)_
 
 ```sh
-pnpm add south-african-id
+pnpm add @south-african/id
 ```
 
 ### npm
 
 ```sh
-npm install south-african-id
+npm install @south-african/id
 ```
 
 ### yarn
 
 ```sh
-yarn add south-african-id
+yarn add @south-african/id
 ```
 
 ### bun
 
 ```sh
-bun add south-african-id
+bun add @south-african/id
 ```
 
 ---
@@ -100,7 +100,7 @@ bun add south-african-id
 ## Quick Start
 
 ```ts
-import { parse } from "south-african-id";
+import { parse } from "@south-african/id";
 
 const result = parse("9001049818080");
 
@@ -157,7 +157,7 @@ function parse(idNumber: string): IDResult;
 | `reason`   | `InvalidReason` | Why validation failed     |
 
 ```ts
-import { parse } from "south-african-id";
+import { parse } from "@south-african/id";
 
 // ✅ Valid
 const r1 = parse("9001049818080");
@@ -187,7 +187,7 @@ function isValid(idNumber: string): boolean;
 ```
 
 ```ts
-import { isValid } from "south-african-id";
+import { isValid } from "@south-african/id";
 
 isValid("9001049818080"); // true
 isValid("1234567890123"); // false
@@ -205,7 +205,7 @@ function getDateOfBirth(idNumber: string): Date | null;
 ```
 
 ```ts
-import { getDateOfBirth } from "south-african-id";
+import { getDateOfBirth } from "@south-african/id";
 
 const dob = getDateOfBirth("9001049818080");
 // dob instanceof Date === true
@@ -227,7 +227,7 @@ function getGender(idNumber: string): "male" | "female" | null;
 ```
 
 ```ts
-import { getGender } from "south-african-id";
+import { getGender } from "@south-african/id";
 
 getGender("9001049818080"); // "male"   (sequence 9818 ≥ 5000)
 getGender("7805050050083"); // "female" (sequence 0050 < 5000)
@@ -245,7 +245,7 @@ function getAge(idNumber: string): number | null;
 ```
 
 ```ts
-import { getAge } from "south-african-id";
+import { getAge } from "@south-african/id";
 
 getAge("9001049818080"); // e.g. 35
 getAge("invalid"); // null
@@ -264,7 +264,7 @@ function getCitizenship(
 ```
 
 ```ts
-import { getCitizenship } from "south-african-id";
+import { getCitizenship } from "@south-african/id";
 
 getCitizenship("9001049818080"); // "citizen"
 getCitizenship("8001015009087"); // "permanent_resident"
@@ -282,7 +282,7 @@ function luhn(digits: string): boolean;
 ```
 
 ```ts
-import { luhn } from "south-african-id";
+import { luhn } from "@south-african/id";
 
 luhn("9001049818080"); // true
 luhn("9001049818081"); // false
@@ -303,7 +303,7 @@ import type {
   Gender,
   CitizenshipStatus,
   RawSegments,
-} from "south-african-id";
+} from "@south-african/id";
 ```
 
 ### `IDResult`
@@ -409,7 +409,7 @@ interface RawSegments {
 ### Form validation
 
 ```ts
-import { isValid } from "south-african-id";
+import { isValid } from "@south-african/id";
 
 function validateForm(idNumber: string) {
   if (!isValid(idNumber)) {
@@ -421,7 +421,7 @@ function validateForm(idNumber: string) {
 ### Detailed error handling
 
 ```ts
-import { parse } from "south-african-id";
+import { parse } from "@south-african/id";
 
 function processID(idNumber: string) {
   const result = parse(idNumber);
@@ -446,7 +446,7 @@ function processID(idNumber: string) {
 ### Displaying a person's profile
 
 ```ts
-import { parse } from "south-african-id";
+import { parse } from "@south-african/id";
 
 const id = parse("9001049818080");
 
@@ -471,7 +471,7 @@ if (id.valid) {
 ### Filtering a list
 
 ```ts
-import { getGender, getAge } from "south-african-id";
+import { getGender, getAge } from "@south-african/id";
 
 const ids = ["9001049818080", "7805050050083", "8001015009087"];
 
@@ -485,7 +485,7 @@ const over40 = ids.filter((id) => {
 ### Using raw segments
 
 ```ts
-import { parse } from "south-african-id";
+import { parse } from "@south-african/id";
 
 const result = parse("9001049818080");
 
@@ -499,7 +499,7 @@ if (result.valid) {
 ### CommonJS usage
 
 ```js
-const { parse, isValid } = require("south-african-id");
+const { parse, isValid } = require("@south-african/id");
 
 const result = parse("9001049818080");
 console.log(result.valid); // true
@@ -518,7 +518,7 @@ console.log(result.valid); // true
 ### Project structure
 
 ```
-south-african-id/
+@south-african/id/
 ├── src/
 │   ├── index.ts          # Public barrel — re-exports everything
 │   ├── types.ts          # All TypeScript types and interfaces

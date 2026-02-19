@@ -1,5 +1,5 @@
 /**
- * south-african-id
+ * @south-african/id
  *
  * Parse, validate, and extract data from South African ID numbers.
  *

@@ -112,7 +112,7 @@ function calculateAge(dob: Date): number {
  *
  * @example
  * ```ts
- * import { parse } from "south-african-id";
+ * import { parse } from "@south-african/id";
  *
  * const result = parse("9001049818080");
  * if (result.valid) {
@@ -187,7 +187,7 @@ export function parse(idNumber: string): IDResult {
  *
  * @example
  * ```ts
- * import { isValid } from "south-african-id";
+ * import { isValid } from "@south-african/id";
  *
  * isValid("9001049818080"); // true
  * isValid("1234567890123"); // false
@@ -205,7 +205,7 @@ export function isValid(idNumber: string): boolean {
  *
  * @example
  * ```ts
- * import { getDateOfBirth } from "south-african-id";
+ * import { getDateOfBirth } from "@south-african/id";
  *
  * getDateOfBirth("9001049818080"); // Date(1990, 0, 4)
  * ```
@@ -223,7 +223,7 @@ export function getDateOfBirth(idNumber: string): Date | null {
  *
  * @example
  * ```ts
- * import { getGender } from "south-african-id";
+ * import { getGender } from "@south-african/id";
  *
  * getGender("9001049818080"); // "male"
  * ```
@@ -241,7 +241,7 @@ export function getGender(idNumber: string): Gender | null {
  *
  * @example
  * ```ts
- * import { getAge } from "south-african-id";
+ * import { getAge } from "@south-african/id";
  *
  * getAge("9001049818080"); // e.g. 35
  * ```
@@ -259,7 +259,7 @@ export function getAge(idNumber: string): number | null {
  *
  * @example
  * ```ts
- * import { getCitizenship } from "south-african-id";
+ * import { getCitizenship } from "@south-african/id";
  *
  * getCitizenship("9001049818080"); // "citizen"
  * ```
